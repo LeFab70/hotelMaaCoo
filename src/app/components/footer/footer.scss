@@ -18,15 +18,11 @@
   margin-bottom: 1rem;
 }
 
-.footer__logo span {
-  width: 2.2rem;
-  height: 2.2rem;
-  display: grid;
-  place-items: center;
-  background: var(--brass);
-  color: var(--forest);
-  font-family: var(--font-display);
-  font-weight: 700;
+.footer__logo img {
+  width: 3.4rem;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .footer__logo strong {
