@@ -125,6 +125,23 @@
 }
 
 @media (max-width: 640px) {
+  .hero {
+    min-height: 100svh;
+    align-items: end;
+  }
+
+  .hero__content {
+    padding-bottom: 2.5rem;
+  }
+
+  .hero__brand {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+  }
+
+  .hero__lead {
+    font-size: 0.98rem;
+  }
+
   .hero__cta {
     flex-direction: column;
     align-items: stretch;

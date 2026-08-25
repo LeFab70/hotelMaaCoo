@@ -1,16 +1,29 @@
-<header class="nav" [class.nav--scrolled]="scrolled()" [class.nav--open]="open()">
+<header
+  class="nav"
+  [class.nav--scrolled]="scrolled()"
+  [class.nav--open]="open()"
+>
   <div class="nav__inner container">
     <a href="#accueil" class="nav__brand" (click)="close()">
       <span class="nav__mark">M</span>
-      <span class="nav__name">MA'ACO <em>Hotels</em></span>
+      <span class="nav__name">
+        MA'ACO
+        <em>Hotels</em>
+      </span>
     </a>
 
-    <nav class="nav__links" [class.is-open]="open()" aria-label="Navigation principale">
-      @for (link of links; track link.href) {
-        <a [href]="link.href" (click)="close()">{{ link.label }}</a>
-      }
+    <div class="nav__desktop">
+      <nav class="nav__links" aria-label="Navigation principale">
+        @for (link of links; track link.href) {
+          <a [href]="link.href">{{ link.label }}</a>
+        }
+      </nav>
       <div class="nav__actions">
-        <a class="nav__icon-btn" [href]="hotelService.mailLink()" aria-label="Écrire un e-mail">
+        <a
+          class="nav__icon-btn"
+          [href]="hotelService.mailLink()"
+          aria-label="Écrire un e-mail"
+        >
           <svg lucideMail [size]="18"></svg>
         </a>
         <a
@@ -21,20 +34,78 @@
           Réserver
         </a>
       </div>
+    </div>
+
+    <div class="nav__mobile-bar">
+      <a
+        class="nav__call"
+        [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
+        aria-label="Appeler pour réserver"
+      >
+        <svg lucidePhone [size]="18"></svg>
+      </a>
+      <button
+        class="nav__burger"
+        type="button"
+        [attr.aria-expanded]="open()"
+        aria-controls="mobile-menu"
+        aria-label="Ouvrir le menu"
+        (click)="toggle()"
+      >
+        @if (open()) {
+          <svg lucideX [size]="22"></svg>
+        } @else {
+          <svg lucideMenu [size]="22"></svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="nav__backdrop"
+    [class.is-visible]="open()"
+    (click)="close()"
+    aria-hidden="true"
+  ></div>
+
+  <aside
+    id="mobile-menu"
+    class="nav__drawer"
+    [class.is-open]="open()"
+    [attr.aria-hidden]="!open()"
+  >
+    <div class="nav__drawer-head">
+      <p>Menu</p>
+      <button type="button" class="nav__drawer-close" (click)="close()" aria-label="Fermer">
+        <svg lucideX [size]="20"></svg>
+      </button>
+    </div>
+
+    <nav class="nav__drawer-links" aria-label="Navigation mobile">
+      @for (link of links; track link.href; let i = $index) {
+        <a
+          [href]="link.href"
+          [style.--i]="i"
+          (click)="close()"
+        >
+          {{ link.label }}
+        </a>
+      }
     </nav>
 
-    <button
-      class="nav__burger"
-      type="button"
-      [attr.aria-expanded]="open()"
-      aria-label="Menu"
-      (click)="toggle()"
-    >
-      @if (open()) {
-        <svg lucideX [size]="22"></svg>
-      } @else {
-        <svg lucideMenu [size]="22"></svg>
-      }
-    </button>
-  </div>
+    <div class="nav__drawer-cta">
+      <a
+        class="btn btn-primary"
+        [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
+        (click)="close()"
+      >
+        <svg lucidePhone [size]="18"></svg>
+        Appeler {{ hotelService.selected().phones[0] }}
+      </a>
+      <a class="btn btn-outline" [href]="hotelService.mailLink()" (click)="close()">
+        <svg lucideMail [size]="18"></svg>
+        Écrire un e-mail
+      </a>
+    </div>
+  </aside>
 </header>

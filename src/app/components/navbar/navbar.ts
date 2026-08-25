@@ -1,4 +1,12 @@
-import { Component, HostListener, inject, signal } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  inject,
+  signal,
+  effect,
+  PLATFORM_ID,
+} from '@angular/core';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import {
   LucideMenu,
   LucideX,
@@ -14,6 +22,8 @@ import { HotelService } from '../../core/hotel.service';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly document = inject(DOCUMENT);
   readonly hotelService = inject(HotelService);
   readonly open = signal(false);
   readonly scrolled = signal(false);
@@ -27,9 +37,28 @@ export class Navbar {
     { href: '#localisation', label: 'Localisation' },
   ];
 
+  constructor() {
+    effect(() => {
+      if (!isPlatformBrowser(this.platformId)) return;
+      this.document.body.classList.toggle('nav-locked', this.open());
+    });
+  }
+
   @HostListener('window:scroll')
   onScroll(): void {
-    this.scrolled.set(window.scrollY > 24);
+    this.scrolled.set(window.scrollY > 16);
+  }
+
+  @HostListener('window:keydown.escape')
+  onEscape(): void {
+    this.close();
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    if (window.innerWidth > 1024) {
+      this.close();
+    }
   }
 
   toggle(): void {

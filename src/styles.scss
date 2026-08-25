@@ -83,8 +83,13 @@ p {
   margin-inline: auto;
 }
 
+body.nav-locked {
+  overflow: hidden;
+  touch-action: none;
+}
+
 .section {
-  padding: clamp(4rem, 8vw, 6.5rem) 0;
+  padding: clamp(3.25rem, 7vw, 6.5rem) 0;
 }
 
 .section-label {
@@ -223,5 +228,17 @@ p {
 
   .btn:hover {
     transform: none;
+  }
+}
+
+/* Avoid forcing full-width on every page button; sections handle their own CTAs */
+@media (max-width: 640px) {
+  .container {
+    width: min(1120px, calc(100% - 1.5rem));
+  }
+
+  .section-title,
+  .section-lead {
+    max-width: none;
   }
 }

@@ -4,16 +4,16 @@
   z-index: 100;
   height: var(--nav-h);
   transition:
-    background 0.4s var(--ease),
-    box-shadow 0.4s var(--ease),
-    backdrop-filter 0.4s var(--ease);
+    background 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    backdrop-filter 0.35s var(--ease);
 }
 
 .nav--scrolled,
 .nav--open {
-  background: rgba(248, 250, 248, 0.92);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 8px 30px rgba(18, 53, 40, 0.08);
+  background: rgba(248, 250, 248, 0.94);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 32px rgba(18, 53, 40, 0.1);
 }
 
 .nav__inner {
@@ -22,18 +22,21 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  position: relative;
+  z-index: 3;
 }
 
 .nav__brand {
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  z-index: 2;
+  min-width: 0;
 }
 
 .nav__mark {
   width: 2.2rem;
   height: 2.2rem;
+  flex-shrink: 0;
   display: grid;
   place-items: center;
   background: var(--forest);
@@ -49,6 +52,7 @@
   font-weight: 700;
   color: var(--white);
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .nav--scrolled .nav__name,
@@ -63,38 +67,47 @@
   margin-left: 0.15rem;
 }
 
+.nav__desktop {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 1.35rem;
+  gap: 0.15rem;
 }
 
 .nav__links a {
   font-size: 0.9rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.88);
-  transition: color 0.25s ease;
+  padding: 0.45rem 0.7rem;
+  border-radius: 2px;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
 }
 
-.nav--scrolled .nav__links > a,
-.nav--open .nav__links > a {
+.nav--scrolled .nav__links a {
   color: var(--ink-soft);
 }
 
-.nav__links > a:hover {
+.nav__links a:hover {
   color: var(--brass-light);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.nav--scrolled .nav__links > a:hover,
-.nav--open .nav__links > a:hover {
+.nav--scrolled .nav__links a:hover {
   color: var(--forest);
+  background: rgba(18, 53, 40, 0.06);
 }
 
 .nav__actions {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  margin-left: 0.5rem;
+  gap: 0.55rem;
 }
 
 .nav__icon-btn {
@@ -105,72 +118,188 @@
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.35);
   color: var(--white);
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
 
-.nav--scrolled .nav__icon-btn,
-.nav--open .nav__icon-btn {
+.nav--scrolled .nav__icon-btn {
   border-color: var(--line);
   color: var(--forest);
+}
+
+.nav__icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav--scrolled .nav__icon-btn:hover {
+  background: rgba(18, 53, 40, 0.06);
 }
 
 .nav__cta {
   padding: 0.7rem 1.1rem;
   font-size: 0.88rem;
+  white-space: nowrap;
 }
 
-.nav__burger {
+.nav__mobile-bar {
   display: none;
-  background: none;
-  border: 0;
-  color: var(--white);
-  padding: 0.35rem;
-  z-index: 2;
+  align-items: center;
+  gap: 0.45rem;
 }
 
+.nav__call,
+.nav__burger,
+.nav__drawer-close {
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  border-radius: 50%;
+  padding: 0;
+}
+
+.nav--scrolled .nav__call,
 .nav--scrolled .nav__burger,
+.nav--open .nav__call,
 .nav--open .nav__burger {
+  background: rgba(18, 53, 40, 0.06);
+  border-color: var(--line);
   color: var(--forest);
 }
 
-@media (max-width: 920px) {
-  .nav__burger {
-    display: grid;
-  }
+.nav__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 20, 15, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+  z-index: 1;
+}
 
+.nav__backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav__drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(100%, 360px);
+  height: 100dvh;
+  background: var(--paper);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--nav-h) + 0.5rem) 1.35rem 1.5rem;
+  transform: translateX(105%);
+  transition: transform 0.38s var(--ease);
+  box-shadow: -18px 0 50px rgba(0, 0, 0, 0.18);
+}
+
+.nav__drawer.is-open {
+  transform: translateX(0);
+}
+
+.nav__drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.nav__drawer-head p {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--forest);
+  font-weight: 650;
+}
+
+.nav__drawer-close {
+  background: rgba(18, 53, 40, 0.06);
+  border-color: var(--line);
+  color: var(--forest);
+}
+
+.nav__drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav__drawer-links a {
+  display: block;
+  padding: 0.95rem 0.85rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--forest);
+  border: 1px solid transparent;
+  opacity: 0;
+  transform: translateX(12px);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.35s var(--ease),
+    opacity 0.35s var(--ease);
+}
+
+.nav__drawer.is-open .nav__drawer-links a {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(0.04s * var(--i, 0) + 0.08s);
+}
+
+.nav__drawer-links a:hover,
+.nav__drawer-links a:focus-visible {
+  background: rgba(18, 53, 40, 0.05);
+  border-color: var(--line);
+  outline: none;
+}
+
+.nav__drawer-cta {
+  display: grid;
+  gap: 0.7rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.nav__drawer-cta .btn {
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
   .nav__links {
-    position: fixed;
-    inset: 0;
-    background: var(--paper);
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-8px);
-    transition:
-      opacity 0.35s var(--ease),
-      transform 0.35s var(--ease);
+    gap: 0;
   }
 
-  .nav__links.is-open {
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
+  .nav__links a {
+    font-size: 0.84rem;
+    padding: 0.4rem 0.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav__desktop {
+    display: none;
   }
 
-  .nav__links > a {
-    font-size: 1.35rem;
-    font-family: var(--font-display);
-    color: var(--forest) !important;
+  .nav__mobile-bar {
+    display: flex;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav__name em {
+    display: none;
   }
 
-  .nav__actions {
-    margin-left: 0;
-    flex-direction: column;
-  }
-
-  .nav__icon-btn {
-    border-color: var(--line);
-    color: var(--forest);
+  .nav__drawer {
+    width: 100%;
   }
 }
