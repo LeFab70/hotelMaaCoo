@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Navbar } from '../../components/navbar/navbar';
 import { Hero } from '../../components/hero/hero';
 import { Hotels } from '../../components/hotels/hotels';
+import { Stats } from '../../components/stats/stats';
 import { Rooms } from '../../components/rooms/rooms';
 import { Amenities } from '../../components/amenities/amenities';
 import { Restaurant } from '../../components/restaurant/restaurant';
@@ -16,6 +17,7 @@ import { Footer } from '../../components/footer/footer';
     Navbar,
     Hero,
     Hotels,
+    Stats,
     Rooms,
     Amenities,
     Restaurant,
