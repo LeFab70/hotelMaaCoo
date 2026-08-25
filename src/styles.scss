@@ -14,10 +14,12 @@
   --line: rgba(18, 53, 40, 0.12);
   --shadow: 0 18px 50px rgba(18, 53, 40, 0.12);
   --radius: 4px;
-  --nav-h: 72px;
+  --nav-h: 76px;
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Manrope', system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --container: 1280px;
+  --text-base: 1.0625rem;
 }
 
 *,
@@ -33,9 +35,10 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
+  font-size: var(--text-base);
   color: var(--ink);
   background: var(--paper);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -79,7 +82,7 @@ p {
 }
 
 .container {
-  width: min(1120px, calc(100% - 2.5rem));
+  width: min(var(--container), calc(100% - 3rem));
   margin-inline: auto;
 }
 
@@ -89,30 +92,30 @@ body.nav-locked {
 }
 
 .section {
-  padding: clamp(3.25rem, 7vw, 6.5rem) 0;
+  padding: clamp(3.5rem, 7vw, 7.25rem) 0;
 }
 
 .section-label {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--brass);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.95rem;
 }
 
 .section-title {
-  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-size: clamp(2rem, 4.2vw, 3.35rem);
   color: var(--forest);
-  max-width: 18ch;
+  max-width: 22ch;
 }
 
 .section-lead {
-  margin-top: 1rem;
+  margin-top: 1.15rem;
   color: var(--ink-soft);
-  max-width: 42ch;
-  font-size: 1.05rem;
+  max-width: 52ch;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
 }
 
 .btn {
@@ -120,11 +123,11 @@ body.nav-locked {
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  padding: 0.95rem 1.45rem;
+  padding: 1.05rem 1.55rem;
   border-radius: var(--radius);
   border: 1.5px solid transparent;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition:
     transform 0.35s var(--ease),
     background 0.35s var(--ease),
@@ -245,10 +248,16 @@ body.nav-locked {
   }
 }
 
-/* Avoid forcing full-width on every page button; sections handle their own CTAs */
+@media (min-width: 1200px) {
+  :root {
+    --text-base: 1.125rem;
+    --container: 1360px;
+  }
+}
+
 @media (max-width: 640px) {
   .container {
-    width: min(1120px, calc(100% - 1.5rem));
+    width: min(var(--container), calc(100% - 1.5rem));
   }
 
   .section-title,

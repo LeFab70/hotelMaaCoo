@@ -1,0 +1,97 @@
+<app-navbar />
+
+<main class="contact-page">
+  <section class="contact-hero">
+    <div class="container" appReveal>
+      <span class="section-label">Contactez-nous</span>
+      <h1 class="section-title">Réservez ou posez votre question</h1>
+      <p class="section-lead">
+        Appelez directement, écrivez-nous, ou laissez un message. Notre équipe
+        répond rapidement selon l’hôtel choisi.
+      </p>
+    </div>
+  </section>
+
+  <section class="section contact-body">
+    <div class="container contact-grid">
+      <div class="contact-cards" appReveal>
+        @for (hotel of hotelService.hotels; track hotel.id) {
+          <article class="contact-card">
+            <p class="contact-card__city">{{ hotel.city }} · {{ hotel.region }}</p>
+            <h2>{{ hotel.name }}</h2>
+            <p class="contact-card__addr">
+              <svg lucideMapPin [size]="18"></svg>
+              {{ hotel.address }}
+            </p>
+            <div class="contact-card__links">
+              @for (phone of hotel.phones; track phone) {
+                <a [href]="hotelService.phoneLink(phone)">
+                  <svg lucidePhone [size]="16"></svg>
+                  {{ phone }}
+                </a>
+              }
+              <a [href]="hotelService.mailLink(hotel)">
+                <svg lucideMail [size]="16"></svg>
+                {{ hotel.email }}
+              </a>
+              <a
+                [href]="hotelService.whatsappLink(hotel.phones[0], hotel)"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg lucideMessageCircle [size]="16"></svg>
+                WhatsApp
+              </a>
+            </div>
+          </article>
+        }
+      </div>
+
+      <form class="contact-form" appReveal="right" (ngSubmit)="submit($event)">
+        <h2>Envoyer un message</h2>
+        <p>Le message s’ouvre dans votre application e-mail, prêt à envoyer.</p>
+
+        <label>
+          Nom complet
+          <input [(ngModel)]="name" name="name" required placeholder="Votre nom" />
+        </label>
+        <label>
+          Téléphone
+          <input [(ngModel)]="phone" name="phone" required placeholder="6XX XX XX XX" />
+        </label>
+        <label>
+          Hôtel / ville
+          <select [(ngModel)]="city" name="city">
+            @for (hotel of hotelService.hotels; track hotel.id) {
+              <option [value]="hotel.city">{{ hotel.city }} — {{ hotel.name }}</option>
+            }
+          </select>
+        </label>
+        <label>
+          Message
+          <textarea
+            [(ngModel)]="message"
+            name="message"
+            rows="5"
+            required
+            placeholder="Dates, type de chambre, événement…"
+          ></textarea>
+        </label>
+
+        <button class="btn btn-dark" type="submit">
+          <svg lucideSend [size]="18"></svg>
+          Préparer l’e-mail
+        </button>
+
+        @if (sent) {
+          <p class="contact-form__ok">
+            Votre client e-mail va s’ouvrir. Sinon, écrivez à
+            {{ hotelService.email }}.
+          </p>
+        }
+      </form>
+    </div>
+  </section>
+</main>
+
+<app-footer />

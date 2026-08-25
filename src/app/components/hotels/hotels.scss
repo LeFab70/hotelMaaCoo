@@ -70,7 +70,7 @@
 }
 
 .hotel-card h3 {
-  font-size: 1.35rem;
+  font-size: clamp(1.35rem, 1.8vw, 1.55rem);
   color: var(--forest);
 }
 

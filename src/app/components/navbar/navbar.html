@@ -4,7 +4,7 @@
   [class.nav--open]="open()"
 >
   <div class="nav__inner container">
-    <a href="#accueil" class="nav__brand" (click)="close()">
+    <a routerLink="/" fragment="accueil" class="nav__brand" (click)="close()">
       <img
         class="nav__logo"
         src="assets/hotel/brand/logo-hm.png"
@@ -20,8 +20,12 @@
 
     <div class="nav__desktop">
       <nav class="nav__links" aria-label="Navigation principale">
-        @for (link of links; track link.href) {
-          <a [href]="link.href">
+        @for (link of links; track link.label) {
+          <a
+            [routerLink]="link.path"
+            [fragment]="link.fragment || undefined"
+            (click)="close()"
+          >
             @switch (link.icon) {
               @case ('hotels') {
                 <svg lucideBuilding2 [size]="15"></svg>
@@ -40,6 +44,9 @@
               }
               @case ('map') {
                 <svg lucideMapPin [size]="15"></svg>
+              }
+              @case ('contact') {
+                <svg lucideMessageSquare [size]="15"></svg>
               }
             }
             <span>{{ link.label }}</span>
@@ -113,8 +120,13 @@
     </div>
 
     <nav class="nav__drawer-links" aria-label="Navigation mobile">
-      @for (link of links; track link.href; let i = $index) {
-        <a [href]="link.href" [style.--i]="i" (click)="close()">
+      @for (link of links; track link.label; let i = $index) {
+        <a
+          [routerLink]="link.path"
+          [fragment]="link.fragment || undefined"
+          [style.--i]="i"
+          (click)="close()"
+        >
           <span class="nav__drawer-icon">
             @switch (link.icon) {
               @case ('hotels') {
@@ -135,6 +147,9 @@
               @case ('map') {
                 <svg lucideMapPin [size]="18"></svg>
               }
+              @case ('contact') {
+                <svg lucideMessageSquare [size]="18"></svg>
+              }
             }
           </span>
           <span>{{ link.label }}</span>
@@ -151,9 +166,9 @@
         <svg lucidePhone [size]="18"></svg>
         Appeler {{ hotelService.selected().phones[0] }}
       </a>
-      <a class="btn btn-outline" [href]="hotelService.mailLink()" (click)="close()">
+      <a class="btn btn-outline" routerLink="/contact" (click)="close()">
         <svg lucideMail [size]="18"></svg>
-        Écrire un e-mail
+        Contactez-nous
       </a>
     </div>
   </aside>

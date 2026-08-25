@@ -77,7 +77,7 @@
 
 .hero__brand {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 8vw, 5.2rem);
+  font-size: clamp(3rem, 8.5vw, 5.8rem);
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 0.95;
@@ -89,9 +89,9 @@
 }
 
 .hero h1 {
-  font-size: clamp(1.2rem, 2.6vw, 1.75rem);
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
   font-weight: 500;
-  max-width: 22ch;
+  max-width: 24ch;
   color: rgba(255, 255, 255, 0.92);
   opacity: 0;
   animation: heroIn 1s var(--ease) 0.32s both;
@@ -99,9 +99,9 @@
 
 .hero__lead {
   margin-top: 1.15rem;
-  max-width: 38ch;
+  max-width: 44ch;
   color: rgba(255, 255, 255, 0.78);
-  font-size: 1.05rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
   opacity: 0;
   animation: heroIn 1s var(--ease) 0.42s both;
 }

@@ -7,6 +7,7 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import {
   LucideMenu,
   LucideX,
@@ -18,12 +19,14 @@ import {
   LucideUtensilsCrossed,
   LucideStar,
   LucideMapPin,
+  LucideMessageSquare,
 } from '@lucide/angular';
 import { HotelService } from '../../core/hotel.service';
 
 @Component({
   selector: 'app-navbar',
   imports: [
+    RouterLink,
     LucideMenu,
     LucideX,
     LucidePhone,
@@ -34,6 +37,7 @@ import { HotelService } from '../../core/hotel.service';
     LucideUtensilsCrossed,
     LucideStar,
     LucideMapPin,
+    LucideMessageSquare,
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
@@ -46,12 +50,13 @@ export class Navbar {
   readonly scrolled = signal(false);
 
   readonly links = [
-    { href: '#hotels', label: 'Nos hôtels', icon: 'hotels' },
-    { href: '#chambres', label: 'Chambres', icon: 'rooms' },
-    { href: '#services', label: 'Services', icon: 'services' },
-    { href: '#restaurant', label: 'Restaurant', icon: 'restaurant' },
-    { href: '#temoignages', label: 'Avis', icon: 'reviews' },
-    { href: '#localisation', label: 'Localisation', icon: 'map' },
+    { path: '/', fragment: 'hotels', label: 'Nos hôtels', icon: 'hotels' },
+    { path: '/', fragment: 'chambres', label: 'Chambres', icon: 'rooms' },
+    { path: '/', fragment: 'services', label: 'Services', icon: 'services' },
+    { path: '/', fragment: 'restaurant', label: 'Restaurant', icon: 'restaurant' },
+    { path: '/', fragment: 'temoignages', label: 'Avis', icon: 'reviews' },
+    { path: '/', fragment: 'localisation', label: 'Localisation', icon: 'map' },
+    { path: '/contact', fragment: null, label: 'Contactez-nous', icon: 'contact' },
   ] as const;
 
   constructor() {

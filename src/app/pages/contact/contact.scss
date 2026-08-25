@@ -1,0 +1,133 @@
+.contact-page {
+  padding-top: var(--nav-h);
+}
+
+.contact-hero {
+  padding: clamp(3rem, 6vw, 5rem) 0 1rem;
+  background:
+    linear-gradient(180deg, #e8efe9 0%, var(--paper) 100%);
+}
+
+.contact-hero .section-title {
+  max-width: 16ch;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+}
+
+.contact-cards {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 1.35rem 1.3rem;
+}
+
+.contact-card__city {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.contact-card h2 {
+  margin-top: 0.4rem;
+  font-size: 1.45rem;
+  color: var(--forest);
+}
+
+.contact-card__addr {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+.contact-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+.contact-card__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 650;
+  color: var(--forest);
+}
+
+.contact-form {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: clamp(1.25rem, 3vw, 1.85rem);
+  position: sticky;
+  top: calc(var(--nav-h) + 1rem);
+}
+
+.contact-form h2 {
+  font-size: 1.55rem;
+  color: var(--forest);
+}
+
+.contact-form > p {
+  margin: 0.55rem 0 1.25rem;
+  color: var(--ink-soft);
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 0.95rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--forest);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 0.85rem 0.95rem;
+  font: inherit;
+  color: var(--ink);
+  border-radius: 2px;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: 2px solid rgba(184, 146, 62, 0.45);
+  outline-offset: 1px;
+}
+
+.contact-form__ok {
+  margin-top: 0.9rem;
+  color: var(--forest-soft);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    position: static;
+  }
+}

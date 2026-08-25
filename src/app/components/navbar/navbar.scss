@@ -102,9 +102,14 @@
   color: var(--ink-soft);
 }
 
-.nav__links a:hover {
+.nav__links a.is-active {
   color: var(--brass-light);
   background: rgba(255, 255, 255, 0.1);
+}
+
+.nav--scrolled .nav__links a.is-active {
+  color: var(--forest);
+  background: rgba(18, 53, 40, 0.06);
 }
 
 .nav--scrolled .nav__links a:hover {

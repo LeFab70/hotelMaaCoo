@@ -1,0 +1,76 @@
+<div class="chat">
+  @if (open()) {
+    <section class="chat__panel" aria-label="Assistant MA'ACO" role="dialog">
+      <header class="chat__head">
+        <div>
+          <p class="chat__kicker">Assistant MA'ACO</p>
+          <p class="chat__title">Posez votre question</p>
+        </div>
+        <button type="button" class="chat__icon-btn" (click)="close()" aria-label="Fermer le chat">
+          <svg lucideX [size]="18"></svg>
+        </button>
+      </header>
+
+      <div class="chat__quick" aria-label="Questions fréquentes">
+        @for (q of quick; track q) {
+          <button type="button" (click)="askQuick(q)">{{ q }}</button>
+        }
+      </div>
+
+      <div class="chat__thread" #thread>
+        @for (msg of messages(); track $index) {
+          <div class="chat__bubble" [class.chat__bubble--user]="msg.from === 'user'">
+            <p>{{ msg.text }}</p>
+            @if (msg.showContact) {
+              <div class="chat__actions">
+                <a
+                  class="btn btn-primary"
+                  [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
+                >
+                  <svg lucidePhone [size]="16"></svg>
+                  Appeler
+                </a>
+                <a class="btn btn-outline" [href]="hotelService.mailLink()">
+                  <svg lucideMail [size]="16"></svg>
+                  E-mail
+                </a>
+                <a class="btn btn-outline" routerLink="/contact" (click)="close()">Contactez-nous</a>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <form class="chat__form" (ngSubmit)="submit($event)">
+        <label class="sr-only" for="chat-input">Votre message</label>
+        <input
+          id="chat-input"
+          type="text"
+          [ngModel]="draft()"
+          (ngModelChange)="draft.set($event)"
+          name="draft"
+          placeholder="Ex. tarifs Douala, parking, réservation…"
+          autocomplete="off"
+        />
+        <button type="submit" class="chat__send" aria-label="Envoyer">
+          <svg lucideSend [size]="18"></svg>
+        </button>
+      </form>
+    </section>
+  }
+
+  <button
+    type="button"
+    class="chat__fab"
+    [class.is-open]="open()"
+    (click)="toggle()"
+    [attr.aria-expanded]="open()"
+    aria-label="Ouvrir l’assistant MA'ACO"
+  >
+    @if (open()) {
+      <svg lucideX [size]="22"></svg>
+    } @else {
+      <svg lucideMessageCircle [size]="22"></svg>
+    }
+  </button>
+</div>

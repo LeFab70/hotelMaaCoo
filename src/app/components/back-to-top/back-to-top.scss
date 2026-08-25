@@ -1,6 +1,6 @@
 .back-top {
   position: fixed;
-  right: max(1rem, env(safe-area-inset-right));
+  right: max(4.6rem, calc(env(safe-area-inset-right) + 3.6rem));
   bottom: max(1.25rem, env(safe-area-inset-bottom));
   z-index: 90;
   width: 3rem;
