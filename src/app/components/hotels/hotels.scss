@@ -33,6 +33,16 @@
 .hotel-card__media {
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  position: relative;
+}
+
+.hotel-card__media::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(transparent, rgba(8, 22, 17, 0.28));
+  pointer-events: none;
 }
 
 .hotel-card__media img {

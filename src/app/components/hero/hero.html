@@ -7,18 +7,20 @@
     />
     <img
       class="hero__img hero__img--fade"
-      src="assets/hotel/hero/hero-main.jpg"
+      src="assets/hotel/exteriors/nkong-facade.jpg"
       alt=""
     />
     <div class="hero__veil"></div>
+    <div class="hero__grain"></div>
   </div>
 
   <div class="hero__content container">
+    <p class="hero__eyebrow">Bertoua · Douala · Nkong-Ni</p>
     <p class="hero__brand">Hôtel MA'ACO</p>
-    <h1>Séjournez sereinement<br />au Cameroun</h1>
+    <h1>L’hospitalité camerounaise,<br />tout simplement bien faite</h1>
     <p class="hero__lead">
-      Trois adresses — Dschang, Douala et Bertoua — pour un accueil chaleureux,
-      un parking sécurisé et un vrai confort.
+      Parking sécurisé, chambres confortables, restaurant et salles pour vos
+      événements — réservez en un appel.
     </p>
     <div class="hero__cta">
       <a
@@ -28,16 +30,24 @@
         <svg lucidePhone [size]="18"></svg>
         Appeler pour réserver
       </a>
+      <a class="btn btn-ghost" href="#hotels">
+        Découvrir nos hôtels
+      </a>
       <a class="btn btn-ghost" [href]="hotelService.mailLink()">
         <svg lucideMail [size]="18"></svg>
-        Écrire un e-mail
+        E-mail
       </a>
     </div>
     <div class="hero__meta">
       <span>
         <svg lucideMapPin [size]="16"></svg>
-        Dschang · Douala · Bertoua
+        3 villes · 100+ chambres · 40 000+ clients
       </span>
     </div>
   </div>
+
+  <a class="hero__scroll" href="#hotels" aria-label="Défiler vers les hôtels">
+    <span>Explorer</span>
+    <svg lucideChevronDown [size]="18"></svg>
+  </a>
 </section>

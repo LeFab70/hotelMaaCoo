@@ -10,6 +10,7 @@ import { Testimonials } from '../../components/testimonials/testimonials';
 import { MapSection } from '../../components/map-section/map-section';
 import { CtaBanner } from '../../components/cta-banner/cta-banner';
 import { Footer } from '../../components/footer/footer';
+import { BackToTop } from '../../components/back-to-top/back-to-top';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ import { Footer } from '../../components/footer/footer';
     MapSection,
     CtaBanner,
     Footer,
+    BackToTop,
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',

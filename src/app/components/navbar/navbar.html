@@ -15,7 +15,29 @@
     <div class="nav__desktop">
       <nav class="nav__links" aria-label="Navigation principale">
         @for (link of links; track link.href) {
-          <a [href]="link.href">{{ link.label }}</a>
+          <a [href]="link.href">
+            @switch (link.icon) {
+              @case ('hotels') {
+                <svg lucideBuilding2 [size]="15"></svg>
+              }
+              @case ('rooms') {
+                <svg lucideBedDouble [size]="15"></svg>
+              }
+              @case ('services') {
+                <svg lucideSparkles [size]="15"></svg>
+              }
+              @case ('restaurant') {
+                <svg lucideUtensilsCrossed [size]="15"></svg>
+              }
+              @case ('reviews') {
+                <svg lucideStar [size]="15"></svg>
+              }
+              @case ('map') {
+                <svg lucideMapPin [size]="15"></svg>
+              }
+            }
+            <span>{{ link.label }}</span>
+          </a>
         }
       </nav>
       <div class="nav__actions">
@@ -75,7 +97,10 @@
     [attr.aria-hidden]="!open()"
   >
     <div class="nav__drawer-head">
-      <p>Menu</p>
+      <div>
+        <p class="nav__drawer-kicker">Hôtel MA'ACO</p>
+        <p>Explorer</p>
+      </div>
       <button type="button" class="nav__drawer-close" (click)="close()" aria-label="Fermer">
         <svg lucideX [size]="20"></svg>
       </button>
@@ -83,12 +108,30 @@
 
     <nav class="nav__drawer-links" aria-label="Navigation mobile">
       @for (link of links; track link.href; let i = $index) {
-        <a
-          [href]="link.href"
-          [style.--i]="i"
-          (click)="close()"
-        >
-          {{ link.label }}
+        <a [href]="link.href" [style.--i]="i" (click)="close()">
+          <span class="nav__drawer-icon">
+            @switch (link.icon) {
+              @case ('hotels') {
+                <svg lucideBuilding2 [size]="18"></svg>
+              }
+              @case ('rooms') {
+                <svg lucideBedDouble [size]="18"></svg>
+              }
+              @case ('services') {
+                <svg lucideSparkles [size]="18"></svg>
+              }
+              @case ('restaurant') {
+                <svg lucideUtensilsCrossed [size]="18"></svg>
+              }
+              @case ('reviews') {
+                <svg lucideStar [size]="18"></svg>
+              }
+              @case ('map') {
+                <svg lucideMapPin [size]="18"></svg>
+              }
+            }
+          </span>
+          <span>{{ link.label }}</span>
         </a>
       }
     </nav>

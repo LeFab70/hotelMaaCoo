@@ -1,0 +1,44 @@
+.back-top {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(184, 146, 62, 0.45);
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--brass-light);
+  box-shadow: 0 14px 34px rgba(18, 53, 40, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.92);
+  transition:
+    opacity 0.35s var(--ease),
+    transform 0.35s var(--ease),
+    background 0.25s ease;
+}
+
+.back-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.back-top:hover {
+  background: var(--forest-mid);
+  transform: translateY(-2px);
+}
+
+.back-top:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-top {
+    transition: none;
+  }
+}

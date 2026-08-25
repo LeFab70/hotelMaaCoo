@@ -12,12 +12,29 @@ import {
   LucideX,
   LucidePhone,
   LucideMail,
+  LucideBuilding2,
+  LucideBedDouble,
+  LucideSparkles,
+  LucideUtensilsCrossed,
+  LucideStar,
+  LucideMapPin,
 } from '@lucide/angular';
 import { HotelService } from '../../core/hotel.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [LucideMenu, LucideX, LucidePhone, LucideMail],
+  imports: [
+    LucideMenu,
+    LucideX,
+    LucidePhone,
+    LucideMail,
+    LucideBuilding2,
+    LucideBedDouble,
+    LucideSparkles,
+    LucideUtensilsCrossed,
+    LucideStar,
+    LucideMapPin,
+  ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
@@ -29,13 +46,13 @@ export class Navbar {
   readonly scrolled = signal(false);
 
   readonly links = [
-    { href: '#hotels', label: 'Nos hôtels' },
-    { href: '#chambres', label: 'Chambres' },
-    { href: '#services', label: 'Services' },
-    { href: '#restaurant', label: 'Restaurant' },
-    { href: '#temoignages', label: 'Avis' },
-    { href: '#localisation', label: 'Localisation' },
-  ];
+    { href: '#hotels', label: 'Nos hôtels', icon: 'hotels' },
+    { href: '#chambres', label: 'Chambres', icon: 'rooms' },
+    { href: '#services', label: 'Services', icon: 'services' },
+    { href: '#restaurant', label: 'Restaurant', icon: 'restaurant' },
+    { href: '#temoignages', label: 'Avis', icon: 'reviews' },
+    { href: '#localisation', label: 'Localisation', icon: 'map' },
+  ] as const;
 
   constructor() {
     effect(() => {

@@ -43,7 +43,7 @@ export class RevealDirective implements OnInit, OnDestroy {
           }
         }
       },
-      { threshold: 0.14, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
     );
     this.observer.observe(node);
   }
