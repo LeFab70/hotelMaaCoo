@@ -19,6 +19,24 @@ npm run build
 
 Sortie : `dist/maaco-hotel/browser`
 
+## Déploiement sur Netlify (recommandé)
+
+1. Va sur [https://app.netlify.com](https://app.netlify.com) → **Add new site** → **Import an existing project**
+2. Connecte GitHub et choisis `LeFab70/hotelMaaCoo`
+3. Netlify lit déjà `netlify.toml`. Vérifie :
+   - **Build command** : `npm ci && npm run build`
+   - **Publish directory** : `dist/maaco-hotel/browser`
+4. **Deploy site**
+5. Teste :
+   - `https://TON-SITE.netlify.app/`
+   - `https://TON-SITE.netlify.app/contact` (doit marcher en lien direct)
+
+Le fichier `netlify.toml` gère le rewrite SPA (`/contact` → `index.html`).
+
+### Domaine custom (optionnel)
+
+Site settings → **Domain management** → Add custom domain.
+
 ## Déploiement sur Render (Static Site)
 
 ### Réglage obligatoire (sinon `/contact` = Not Found)
