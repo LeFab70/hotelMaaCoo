@@ -1,0 +1,121 @@
+.hotels {
+  background:
+    linear-gradient(180deg, var(--paper), var(--mist) 55%, var(--paper));
+}
+
+.hotels__head {
+  margin-bottom: 2.75rem;
+}
+
+.hotels__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.35rem;
+}
+
+.hotel-card {
+  background: var(--white);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  transition:
+    border-color 0.35s var(--ease),
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+}
+
+.hotel-card:hover,
+.hotel-card--active {
+  border-color: rgba(184, 146, 62, 0.55);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.hotel-card__media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.hotel-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+.hotel-card:hover .hotel-card__media img {
+  transform: scale(1.05);
+}
+
+.hotel-card__body {
+  padding: 1.35rem 1.25rem 1.4rem;
+}
+
+.hotel-card__city {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.45rem;
+}
+
+.hotel-card h3 {
+  font-size: 1.35rem;
+  color: var(--forest);
+}
+
+.hotel-card__tag {
+  margin-top: 0.55rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.hotel-card__addr {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+.hotel-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--forest);
+}
+
+.select {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 0;
+  background: none;
+  color: var(--brass);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0;
+}
+
+.select:hover {
+  color: var(--forest);
+}
+
+@media (max-width: 960px) {
+  .hotels__grid {
+    grid-template-columns: 1fr;
+  }
+}

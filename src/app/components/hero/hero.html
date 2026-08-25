@@ -1,0 +1,43 @@
+<section class="hero" id="accueil">
+  <div class="hero__media" aria-hidden="true">
+    <img
+      class="hero__img hero__img--main"
+      src="assets/hotel/hero/hero-alt.jpg"
+      alt=""
+    />
+    <img
+      class="hero__img hero__img--fade"
+      src="assets/hotel/hero/hero-main.jpg"
+      alt=""
+    />
+    <div class="hero__veil"></div>
+  </div>
+
+  <div class="hero__content container">
+    <p class="hero__brand">Hôtel MA'ACO</p>
+    <h1>Séjournez sereinement<br />au Cameroun</h1>
+    <p class="hero__lead">
+      Trois adresses — Dschang, Douala et Bertoua — pour un accueil chaleureux,
+      un parking sécurisé et un vrai confort.
+    </p>
+    <div class="hero__cta">
+      <a
+        class="btn btn-primary"
+        [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
+      >
+        <svg lucidePhone [size]="18"></svg>
+        Appeler pour réserver
+      </a>
+      <a class="btn btn-ghost" [href]="hotelService.mailLink()">
+        <svg lucideMail [size]="18"></svg>
+        Écrire un e-mail
+      </a>
+    </div>
+    <div class="hero__meta">
+      <span>
+        <svg lucideMapPin [size]="16"></svg>
+        Dschang · Douala · Bertoua
+      </span>
+    </div>
+  </div>
+</section>

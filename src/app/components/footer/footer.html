@@ -1,0 +1,53 @@
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <div class="footer__logo">
+        <span>M</span>
+        <strong>MA'ACO Hotels</strong>
+      </div>
+      <p>
+        Hôtels au Cameroun — Dschang (Nkong-Ni), Douala (Logpom) et Bertoua.
+        Réservation simple par appel ou e-mail.
+      </p>
+      <p class="footer__visits">{{ visits.count() | number }} visites sur le site</p>
+    </div>
+
+    <div>
+      <h4>Navigation</h4>
+      <a href="#hotels">Nos hôtels</a>
+      <a href="#chambres">Chambres</a>
+      <a href="#services">Services</a>
+      <a href="#restaurant">Restaurant</a>
+      <a href="#localisation">Localisation</a>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <a [href]="hotelService.mailLink()">
+        <svg lucideMail [size]="16"></svg>
+        {{ hotelService.email }}
+      </a>
+      @for (hotel of hotelService.hotels; track hotel.id) {
+        <a [href]="hotelService.phoneLink(hotel.phones[0])">
+          <svg lucidePhone [size]="16"></svg>
+          {{ hotel.city }} — {{ hotel.phones[0] }}
+        </a>
+      }
+    </div>
+
+    <div>
+      <h4>Adresses</h4>
+      @for (hotel of hotelService.hotels; track hotel.id) {
+        <p>
+          <svg lucideMapPin [size]="16"></svg>
+          <span
+            ><strong>{{ hotel.city }}</strong> — {{ hotel.landmark }}</span
+          >
+        </p>
+      }
+    </div>
+  </div>
+  <div class="footer__bottom container">
+    <p>© {{ year }} Hôtel MA'ACO. Tous droits réservés.</p>
+  </div>
+</footer>

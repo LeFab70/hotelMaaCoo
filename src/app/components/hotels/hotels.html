@@ -1,0 +1,46 @@
+<section class="hotels section" id="hotels">
+  <div class="container">
+    <div class="hotels__head" appReveal>
+      <span class="section-label">Nos adresses</span>
+      <h2 class="section-title">Trois hôtels, une même hospitalité</h2>
+      <p class="section-lead">
+        Bertoua, Douala et Nkong-Ni : la même chaleur d’accueil, partout où vous voyagez.
+        Sélectionnez une ville pour afficher ses tarifs et sa localisation.
+      </p>
+    </div>
+
+    <div class="hotels__grid">
+      @for (hotel of hotelService.hotels; track hotel.id; let i = $index) {
+        <article
+          class="hotel-card"
+          [class.hotel-card--active]="hotelService.selectedId() === hotel.id"
+          appReveal
+          [revealDelay]="i * 100"
+        >
+          <div class="hotel-card__media">
+            <img [src]="hotel.image" [alt]="hotel.name" loading="lazy" />
+          </div>
+          <div class="hotel-card__body">
+            <p class="hotel-card__city">{{ hotel.city }} · {{ hotel.region }}</p>
+            <h3>{{ hotel.name }}</h3>
+            <p class="hotel-card__tag">{{ hotel.tagline }}</p>
+            <p class="hotel-card__addr">
+              <svg lucideMapPin [size]="16"></svg>
+              {{ hotel.landmark }}
+            </p>
+            <div class="hotel-card__footer">
+              <a class="phone" [href]="hotelService.phoneLink(hotel.phones[0])">
+                <svg lucidePhone [size]="16"></svg>
+                {{ hotel.phones[0] }}
+              </a>
+              <button class="select" type="button" (click)="select(hotel.id)">
+                Voir sur la carte
+                <svg lucideArrowRight [size]="16"></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,63 @@
+<section class="amenities section" id="services">
+  <div class="container">
+    <div class="amenities__layout">
+      <div class="amenities__intro" appReveal="left">
+        <span class="section-label">Nos prestations</span>
+        <h2 class="section-title">Hospitalité, événements et confort</h2>
+        <p class="section-lead">
+          Parking sécurisé, restaurant, salle de conférence, mariages et fêtes,
+          laverie gratuite et Wi-Fi — tout est pensé pour votre séjour comme pour vos occasions.
+        </p>
+        <div class="amenities__visual">
+          <img
+            src="assets/hotel/exteriors/nkong-facade.jpg"
+            alt="Façade Hôtel MA'ACO Nkong-Ni"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="amenities__list">
+        @for (item of amenities; track item.title; let i = $index) {
+          <article class="amenity" appReveal="right" [revealDelay]="i * 50">
+            <div class="amenity__icon" aria-hidden="true">
+              @switch (item.icon) {
+                @case ('reception') {
+                  <svg lucideConciergeBell [size]="22"></svg>
+                }
+                @case ('bed') {
+                  <svg lucideBedDouble [size]="22"></svg>
+                }
+                @case ('utensils') {
+                  <svg lucideUtensilsCrossed [size]="22"></svg>
+                }
+                @case ('conference') {
+                  <svg lucidePresentation [size]="22"></svg>
+                }
+                @case ('parking') {
+                  <svg lucideCircleParking [size]="22"></svg>
+                }
+                @case ('wedding') {
+                  <svg lucidePartyPopper [size]="22"></svg>
+                }
+                @case ('laundry') {
+                  <svg lucideWashingMachine [size]="22"></svg>
+                }
+                @case ('wifi') {
+                  <svg lucideWifi [size]="22"></svg>
+                }
+                @case ('cuisine') {
+                  <svg lucideChefHat [size]="22"></svg>
+                }
+              }
+            </div>
+            <div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>

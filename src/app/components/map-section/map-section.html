@@ -1,0 +1,55 @@
+<section class="map-section section" id="localisation">
+  <div class="container">
+    <div class="map-section__head" appReveal>
+      <span class="section-label">Géolocalisation</span>
+      <h2 class="section-title">Trouvez l’hôtel sélectionné</h2>
+      <p class="section-lead">
+        La carte se met à jour selon l’établissement choisi : Dschang, Douala ou Bertoua.
+      </p>
+    </div>
+
+    <div class="map-section__switch" appReveal>
+      @for (hotel of hotelService.hotels; track hotel.id) {
+        <button
+          type="button"
+          [class.active]="hotelService.selectedId() === hotel.id"
+          (click)="hotelService.select(hotel.id)"
+        >
+          <svg lucideMapPin [size]="16"></svg>
+          {{ hotel.city }}
+        </button>
+      }
+    </div>
+
+    <div class="map-section__panel" appReveal>
+      <div class="map-section__info">
+        <h3>{{ hotelService.selected().name }}</h3>
+        <p class="addr">
+          <svg lucideMapPin [size]="18"></svg>
+          {{ hotelService.selected().address }}
+        </p>
+        <p class="landmark">{{ hotelService.selected().landmark }}</p>
+        <div class="phones">
+          @for (phone of hotelService.selected().phones; track phone) {
+            <a [href]="hotelService.phoneLink(phone)">
+              <svg lucidePhone [size]="16"></svg>
+              {{ phone }}
+            </a>
+          }
+        </div>
+        <a class="btn btn-dark" [href]="directionsUrl()" target="_blank" rel="noopener">
+          <svg lucideNavigation [size]="18"></svg>
+          Itinéraire
+        </a>
+      </div>
+      <div class="map-section__frame">
+        <iframe
+          [src]="mapUrl()"
+          title="Carte de l'hôtel sélectionné"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

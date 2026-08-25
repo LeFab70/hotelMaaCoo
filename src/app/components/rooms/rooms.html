@@ -1,0 +1,59 @@
+<section class="rooms section" id="chambres">
+  <div class="container">
+    <div class="rooms__head" appReveal>
+      <div>
+        <span class="section-label">Chambres & tarifs</span>
+        <h2 class="section-title">{{ hotelService.selected().name }}</h2>
+        <p class="section-lead">
+          {{ hotelService.selected().roomCount }} chambres disponibles.
+          Réservation par téléphone ou e-mail — réponse rapide.
+        </p>
+      </div>
+      <div class="rooms__switch" role="tablist" aria-label="Choisir un hôtel">
+        @for (hotel of hotelService.hotels; track hotel.id) {
+          <button
+            type="button"
+            role="tab"
+            [class.active]="hotelService.selectedId() === hotel.id"
+            [attr.aria-selected]="hotelService.selectedId() === hotel.id"
+            (click)="hotelService.select(hotel.id)"
+          >
+            {{ hotel.city }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="rooms__grid">
+      @for (room of hotelService.selected().rooms; track room.name; let i = $index) {
+        <article class="room" appReveal [revealDelay]="i * 80">
+          <div class="room__media">
+            <img [src]="room.image" [alt]="room.name" loading="lazy" />
+            <span class="room__price">{{ hotelService.formatPrice(room.price) }}</span>
+          </div>
+          <div class="room__body">
+            <h3>{{ room.name }}</h3>
+            @if (room.count) {
+              <p class="room__count">{{ room.count }} disponible{{ room.count > 1 ? 's' : '' }}</p>
+            }
+            <p>{{ room.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="rooms__cta" appReveal>
+      <a
+        class="btn btn-dark"
+        [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
+      >
+        <svg lucidePhone [size]="18"></svg>
+        Réserver cette adresse
+      </a>
+      <a class="btn btn-outline" [href]="hotelService.mailLink()">
+        <svg lucideMail [size]="18"></svg>
+        Demande par e-mail
+      </a>
+    </div>
+  </div>
+</section>

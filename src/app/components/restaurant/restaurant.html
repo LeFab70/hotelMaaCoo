@@ -1,0 +1,54 @@
+<section class="restaurant section" id="restaurant">
+  <div class="container restaurant__grid">
+    <div class="restaurant__copy" appReveal="left">
+      <span class="section-label">Bar · Restaurant · Événements</span>
+      <h2 class="section-title">Se restaurer, se réunir, célébrer</h2>
+      <p class="section-lead">
+        Bar et restaurant sur place, pouvant servir de salle de conférence.
+        Le parking sécurisé peut aussi être aménagé en salle de fête pour mariages et cérémonies.
+      </p>
+      <ul>
+        <li>
+          <svg lucideUtensilsCrossed [size]="18"></svg>
+          Cuisine locale et service bar/restaurant
+        </li>
+        <li>
+          <svg lucideUtensilsCrossed [size]="18"></svg>
+          Salle de conférence modulable
+        </li>
+        <li>
+          <svg lucideUtensilsCrossed [size]="18"></svg>
+          Mariages, fêtes et réceptions
+        </li>
+      </ul>
+      <a
+        class="btn btn-primary"
+        [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
+      >
+        <svg lucidePhone [size]="18"></svg>
+        Réserver un événement
+      </a>
+    </div>
+
+    <div class="restaurant__gallery" appReveal="right">
+      <img
+        class="restaurant__main"
+        src="assets/hotel/common/lounge-sofa.jpg"
+        alt="Salon de l'hôtel"
+        loading="lazy"
+      />
+      <img
+        class="restaurant__side"
+        src="assets/hotel/common/lounge-black.jpg"
+        alt="Espace détente"
+        loading="lazy"
+      />
+      <img
+        class="restaurant__side"
+        src="assets/hotel/reception/reception-desk.jpg"
+        alt="Réception"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>

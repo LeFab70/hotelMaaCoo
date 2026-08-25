@@ -1,0 +1,41 @@
+<section class="testimonials section" id="temoignages">
+  <div class="container">
+    <div class="testimonials__head" appReveal>
+      <div>
+        <span class="section-label">Satisfaction clients</span>
+        <h2 class="section-title">Ils ont séjourné chez MA'ACO</h2>
+        <p class="section-lead">
+          Des avis sincères de voyageurs qui ont apprécié l’accueil, la sécurité et le confort.
+        </p>
+      </div>
+      <div class="testimonials__stat" aria-label="Compteur de visites">
+        <svg lucideEye [size]="22"></svg>
+        <div>
+          <strong>{{ visits.count() | number }}</strong>
+          <span>visites du site</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials__grid">
+      @for (t of testimonials; track t.name; let i = $index) {
+        <article class="quote" appReveal [revealDelay]="i * 60">
+          <div class="quote__stars" aria-label="{{ t.rating }} sur 5">
+            @for (_ of [1, 2, 3, 4, 5]; track $index) {
+              <svg
+                lucideStar
+                [size]="16"
+                [class.filled]="$index < t.rating"
+              ></svg>
+            }
+          </div>
+          <p>« {{ t.text }} »</p>
+          <footer>
+            <strong>{{ t.name }}</strong>
+            <span>{{ t.city }}</span>
+          </footer>
+        </article>
+      }
+    </div>
+  </div>
+</section>

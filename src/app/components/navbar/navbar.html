@@ -1,0 +1,40 @@
+<header class="nav" [class.nav--scrolled]="scrolled()" [class.nav--open]="open()">
+  <div class="nav__inner container">
+    <a href="#accueil" class="nav__brand" (click)="close()">
+      <span class="nav__mark">M</span>
+      <span class="nav__name">MA'ACO <em>Hotels</em></span>
+    </a>
+
+    <nav class="nav__links" [class.is-open]="open()" aria-label="Navigation principale">
+      @for (link of links; track link.href) {
+        <a [href]="link.href" (click)="close()">{{ link.label }}</a>
+      }
+      <div class="nav__actions">
+        <a class="nav__icon-btn" [href]="hotelService.mailLink()" aria-label="Écrire un e-mail">
+          <svg lucideMail [size]="18"></svg>
+        </a>
+        <a
+          class="btn btn-primary nav__cta"
+          [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
+        >
+          <svg lucidePhone [size]="16"></svg>
+          Réserver
+        </a>
+      </div>
+    </nav>
+
+    <button
+      class="nav__burger"
+      type="button"
+      [attr.aria-expanded]="open()"
+      aria-label="Menu"
+      (click)="toggle()"
+    >
+      @if (open()) {
+        <svg lucideX [size]="22"></svg>
+      } @else {
+        <svg lucideMenu [size]="22"></svg>
+      }
+    </button>
+  </div>
+</header>

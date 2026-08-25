@@ -1,0 +1,35 @@
+<section class="cta section" id="reserver">
+  <div class="container cta__box" appReveal="scale">
+    <div>
+      <span class="section-label">Réservation</span>
+      <h2>Votre chambre vous attend</h2>
+      <p>
+        Appelez-nous, écrivez-nous ou envoyez un WhatsApp — nous confirmons
+        rapidement selon la disponibilité à
+        {{ hotelService.selected().city }}.
+      </p>
+    </div>
+    <div class="cta__actions">
+      <a
+        class="btn btn-primary"
+        [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
+      >
+        <svg lucidePhone [size]="18"></svg>
+        {{ hotelService.selected().phones[0] }}
+      </a>
+      <a class="btn btn-ghost" [href]="hotelService.mailLink()">
+        <svg lucideMail [size]="18"></svg>
+        E-mail
+      </a>
+      <a
+        class="btn btn-ghost"
+        [href]="hotelService.whatsappLink(hotelService.selected().phones[0])"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg lucideMessageCircle [size]="18"></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
