@@ -1,11 +1,13 @@
 .chat {
+  /* Left side avoids Netlify "Powered by" badge (bottom-right) */
   position: fixed;
-  right: max(1rem, env(safe-area-inset-right));
+  left: max(1rem, env(safe-area-inset-left));
+  right: auto;
   bottom: max(1.15rem, env(safe-area-inset-bottom));
   z-index: 95;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 0.75rem;
 }
 

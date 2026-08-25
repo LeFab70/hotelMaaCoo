@@ -18,7 +18,7 @@
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Manrope', system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --container: 1280px;
+  --container: min(1680px, 92vw);
   --text-base: 1.0625rem;
 }
 
@@ -82,7 +82,7 @@ p {
 }
 
 .container {
-  width: min(var(--container), calc(100% - 3rem));
+  width: min(var(--container), calc(100% - 2.5rem));
   margin-inline: auto;
 }
 
@@ -106,16 +106,16 @@ body.nav-locked {
 }
 
 .section-title {
-  font-size: clamp(2rem, 4.2vw, 3.35rem);
+  font-size: clamp(2.15rem, 4.4vw, 3.75rem);
   color: var(--forest);
-  max-width: 22ch;
+  max-width: 28ch;
 }
 
 .section-lead {
   margin-top: 1.15rem;
   color: var(--ink-soft);
-  max-width: 52ch;
-  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  max-width: 62ch;
+  font-size: clamp(1.08rem, 1.35vw, 1.28rem);
 }
 
 .btn {
@@ -251,7 +251,14 @@ body.nav-locked {
 @media (min-width: 1200px) {
   :root {
     --text-base: 1.125rem;
-    --container: 1360px;
+    --container: min(1720px, 94vw);
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --text-base: 1.1875rem;
+    --container: min(1840px, 95vw);
   }
 }
 

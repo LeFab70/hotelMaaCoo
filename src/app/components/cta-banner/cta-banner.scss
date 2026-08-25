@@ -22,15 +22,16 @@
 }
 
 .cta h2 {
-  font-size: clamp(1.7rem, 3.5vw, 2.35rem);
+  font-size: clamp(1.9rem, 3.8vw, 2.85rem);
   margin-top: 0.35rem;
-  max-width: 16ch;
+  max-width: 18ch;
 }
 
 .cta p {
   margin-top: 0.85rem;
-  max-width: 42ch;
+  max-width: 48ch;
   color: rgba(255, 255, 255, 0.78);
+  font-size: 1.08rem;
 }
 
 .cta__actions {

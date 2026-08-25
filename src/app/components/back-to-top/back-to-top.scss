@@ -1,7 +1,9 @@
 .back-top {
+  /* Above chatbot on the left — clear of Netlify badge (bottom-right) */
   position: fixed;
-  right: max(4.6rem, calc(env(safe-area-inset-right) + 3.6rem));
-  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  left: max(1rem, env(safe-area-inset-left));
+  right: auto;
+  bottom: max(4.7rem, calc(env(safe-area-inset-bottom) + 3.55rem));
   z-index: 90;
   width: 3rem;
   height: 3rem;
