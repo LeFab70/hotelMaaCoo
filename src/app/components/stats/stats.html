@@ -1,0 +1,39 @@
+<section class="stats section" aria-label="Chiffres clés Hôtel MA'ACO">
+  <div class="container">
+    <div class="stats__head" appReveal>
+      <span class="section-label">MA'ACO en chiffres</span>
+      <h2 class="section-title">Une hospitalité qui grandit avec vous</h2>
+      <p class="section-lead">
+        À travers Bertoua, Douala et Nkong-Ni : chambres, appartements et salles de conférence
+        pour voyager, travailler ou célébrer.
+      </p>
+    </div>
+
+    <div class="stats__grid">
+      @for (stat of stats; track stat.label; let i = $index) {
+        <article class="stat" appReveal [revealDelay]="i * 80">
+          <div class="stat__icon" aria-hidden="true">
+            @switch (stat.icon) {
+              @case ('bed') {
+                <svg lucideBedDouble [size]="26"></svg>
+              }
+              @case ('building') {
+                <svg lucideBuilding2 [size]="26"></svg>
+              }
+              @case ('conference') {
+                <svg lucidePresentation [size]="26"></svg>
+              }
+              @case ('users') {
+                <svg lucideUsers [size]="26"></svg>
+              }
+            }
+          </div>
+          <p class="stat__value">
+            {{ displayed()[i] | number }}{{ stat.suffix }}
+          </p>
+          <p class="stat__label">{{ stat.label }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
