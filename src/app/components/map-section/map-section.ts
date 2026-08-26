@@ -1,4 +1,12 @@
-import { Component, computed, inject } from '@angular/core';
+import {
+  Component,
+  PLATFORM_ID,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LucideMapPin, LucideNavigation, LucidePhone } from '@lucide/angular';
 import { HotelService } from '../../core/hotel.service';
@@ -13,6 +21,23 @@ import { RevealDirective } from '../../shared/reveal.directive';
 export class MapSection {
   readonly hotelService = inject(HotelService);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly platformId = inject(PLATFORM_ID);
+  readonly switching = signal(false);
+  private timer?: ReturnType<typeof setTimeout>;
+  private first = true;
+
+  constructor() {
+    effect(() => {
+      this.hotelService.selectedId();
+      if (this.first || !isPlatformBrowser(this.platformId)) {
+        this.first = false;
+        return;
+      }
+      this.switching.set(true);
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => this.switching.set(false), 220);
+    });
+  }
 
   readonly mapUrl = computed(() => {
     const h = this.hotelService.selected();

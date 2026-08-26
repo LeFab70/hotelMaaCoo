@@ -24,11 +24,11 @@
       </div>
     </div>
 
-    <div class="rooms__grid">
+    <div class="rooms__grid" [class.is-switching]="switching()">
       @for (room of hotelService.selected().rooms; track room.name; let i = $index) {
         <article class="room" appReveal [revealDelay]="i * 80">
           <div class="room__media">
-            <img [src]="room.image" [alt]="room.name" loading="lazy" />
+            <img [src]="room.image" [alt]="room.name" loading="lazy" width="640" height="480" />
             <span class="room__price">{{ hotelService.formatPrice(room.price) }}</span>
           </div>
           <div class="room__body">

@@ -9,7 +9,8 @@
 
 .hero__media {
   position: absolute;
-  inset: 0;
+  inset: -24px 0;
+  will-change: transform;
 }
 
 .hero__img {
@@ -109,10 +110,33 @@
 .hero__cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 1.35rem;
   margin-top: 1.85rem;
   opacity: 0;
   animation: heroIn 1s var(--ease) 0.52s both;
+}
+
+.hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+  transition: color 0.25s ease, text-decoration-color 0.25s ease;
+}
+
+.hero__link:hover {
+  color: var(--white);
+  text-decoration-color: var(--white);
+}
+
+.hero__link svg {
+  animation: scrollBounce 1.8s var(--ease) infinite;
 }
 
 .hero__meta {
@@ -210,12 +234,6 @@
   }
 }
 
-@media (max-width: 760px) {
-  .hero__cta .btn-ghost:last-child {
-    display: none;
-  }
-}
-
 @media (max-width: 640px) {
   .hero__content {
     padding-bottom: 4.5rem;
@@ -231,7 +249,8 @@
 
   .hero__cta {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: 1.1rem;
   }
 
   .hero__cta .btn {

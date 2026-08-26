@@ -4,6 +4,7 @@ import {
   inject,
   signal,
   effect,
+  afterNextRender,
   PLATFORM_ID,
 } from '@angular/core';
 import { isPlatformBrowser, DOCUMENT } from '@angular/common';
@@ -48,6 +49,7 @@ export class Navbar {
   readonly hotelService = inject(HotelService);
   readonly open = signal(false);
   readonly scrolled = signal(false);
+  readonly activeFragment = signal<string | null>(null);
 
   readonly links = [
     { path: '/', fragment: 'hotels', label: 'Nos hôtels', icon: 'hotels' },
@@ -63,6 +65,31 @@ export class Navbar {
     effect(() => {
       if (!isPlatformBrowser(this.platformId)) return;
       this.document.body.classList.toggle('nav-locked', this.open());
+    });
+
+    afterNextRender(() => {
+      if (!isPlatformBrowser(this.platformId)) return;
+
+      const ids = this.links
+        .map((link) => link.fragment)
+        .filter((f): f is Exclude<typeof f, null> => !!f);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          if (visible[0]) {
+            this.activeFragment.set(visible[0].target.id);
+          }
+        },
+        { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+      );
+
+      ids.forEach((id) => {
+        const el = this.document.getElementById(id);
+        if (el) observer.observe(el);
+      });
     });
   }
 

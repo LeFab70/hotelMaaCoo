@@ -2,7 +2,7 @@
   <div class="hero__media" aria-hidden="true">
     <img
       class="hero__img hero__img--main"
-      src="assets/hotel/hero/hero-alt.jpg"
+      src="assets/hotel/hero/hero-main.jpg"
       alt=""
     />
     <img
@@ -25,17 +25,15 @@
     <div class="hero__cta">
       <a
         class="btn btn-primary"
+        appMagnetic
         [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
       >
         <svg lucidePhone [size]="18"></svg>
         Appeler pour réserver
       </a>
-      <a class="btn btn-ghost" href="#hotels">
-        Découvrir nos hôtels
-      </a>
-      <a class="btn btn-ghost" [href]="hotelService.mailLink()">
-        <svg lucideMail [size]="18"></svg>
-        E-mail
+      <a class="hero__link" href="#hotels">
+        Voir les 3 adresses
+        <svg lucideChevronDown [size]="16"></svg>
       </a>
     </div>
     <div class="hero__meta">

@@ -18,20 +18,47 @@
           [revealDelay]="i * 100"
         >
           <div class="hotel-card__media">
-            <img [src]="hotel.image" [alt]="hotel.name" loading="lazy" />
+            <img
+              [src]="hotel.image"
+              [alt]="hotel.name"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+            <div class="hotel-card__price-badge">
+              <strong>{{ hotelService.formatPrice(hotelService.startingPrice(hotel)) }}</strong>
+              <span>/ nuit dès</span>
+            </div>
           </div>
           <div class="hotel-card__body">
-            <p class="hotel-card__city">{{ hotel.city }} · {{ hotel.region }}</p>
+            <div class="hotel-card__top">
+              <p class="hotel-card__city">{{ hotel.city }} · {{ hotel.region }}</p>
+              <span class="hotel-card__rating">
+                <svg lucideStar [size]="13"></svg>
+                {{ hotelService.averageRating() }}
+              </span>
+            </div>
             <h3>{{ hotel.name }}</h3>
             <p class="hotel-card__tag">{{ hotel.tagline }}</p>
+            <div class="hotel-card__pills">
+              <span class="pill">
+                <svg lucideCircleParking [size]="13"></svg>
+                Parking sécurisé
+              </span>
+              <span class="pill">
+                <svg lucideWifi [size]="13"></svg>
+                Wi-Fi gratuit
+              </span>
+              <span class="pill">{{ hotel.roomCount }} chambres</span>
+            </div>
             <p class="hotel-card__addr">
               <svg lucideMapPin [size]="16"></svg>
               {{ hotel.landmark }}
             </p>
             <div class="hotel-card__footer">
-              <a class="phone" [href]="hotelService.phoneLink(hotel.phones[0])">
+              <a class="btn btn-dark hotel-card__book" appMagnetic [href]="hotelService.phoneLink(hotel.phones[0])">
                 <svg lucidePhone [size]="16"></svg>
-                {{ hotel.phones[0] }}
+                Réserver
               </a>
               <button class="select" type="button" (click)="select(hotel.id)">
                 Voir sur la carte

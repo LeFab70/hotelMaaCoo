@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, afterNextRender, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Navbar } from '../../components/navbar/navbar';
 import { Hero } from '../../components/hero/hero';
 import { Hotels } from '../../components/hotels/hotels';
@@ -31,4 +32,26 @@ import { BackToTop } from '../../components/back-to-top/back-to-top';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {}
+export class Home {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
+    afterNextRender(() => {
+      if (!isPlatformBrowser(platformId)) return;
+      const id = window.location.hash?.replace('#', '');
+      if (!id) return;
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const navH =
+          parseInt(
+            getComputedStyle(document.documentElement).getPropertyValue('--nav-h'),
+            10
+          ) || 76;
+        const top = el.getBoundingClientRect().top + window.scrollY - navH;
+        window.scrollTo({ top, behavior: 'auto' });
+      }));
+    });
+  }
+}

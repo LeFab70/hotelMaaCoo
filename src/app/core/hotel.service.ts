@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { HOTELS, CONTACT_EMAIL } from './hotel.data';
+import { HOTELS, CONTACT_EMAIL, TESTIMONIALS } from './hotel.data';
 import { Hotel } from './hotel.model';
 
 @Injectable({ providedIn: 'root' })
@@ -7,6 +7,11 @@ export class HotelService {
   readonly hotels = HOTELS;
   readonly email = CONTACT_EMAIL;
   readonly selectedId = signal<string>(HOTELS[0].id);
+
+  readonly averageRating = computed(() => {
+    const sum = TESTIMONIALS.reduce((acc, t) => acc + t.rating, 0);
+    return Math.round((sum / TESTIMONIALS.length) * 10) / 10;
+  });
 
   readonly selected = computed(() => {
     const id = this.selectedId();
@@ -44,5 +49,9 @@ export class HotelService {
 
   formatPrice(price: number): string {
     return new Intl.NumberFormat('fr-FR').format(price) + ' Fcfa';
+  }
+
+  startingPrice(hotel: Hotel): number {
+    return Math.min(...hotel.rooms.map((r) => r.price));
   }
 }

@@ -40,6 +40,18 @@
   border: 1px solid var(--line);
   overflow: hidden;
   min-height: 420px;
+  opacity: 1;
+  transition: opacity 0.22s var(--ease);
+}
+
+.map-section__panel.is-switching {
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-section__panel {
+    transition: none;
+  }
 }
 
 .map-section__info {

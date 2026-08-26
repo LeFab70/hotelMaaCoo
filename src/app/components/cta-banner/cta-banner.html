@@ -12,6 +12,7 @@
     <div class="cta__actions">
       <a
         class="btn btn-primary"
+        appMagnetic
         [href]="hotelService.phoneLink(hotelService.selected().phones[0])"
       >
         <svg lucidePhone [size]="18"></svg>
@@ -23,7 +24,7 @@
       </a>
       <a
         class="btn btn-ghost"
-        [href]="hotelService.whatsappLink(hotelService.selected().phones[0])"
+        [href]="hotelService.whatsappLink(hotelService.selected().phones[0], hotelService.selected())"
         target="_blank"
         rel="noopener"
       >

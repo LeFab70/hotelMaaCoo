@@ -24,6 +24,7 @@
           <a
             [routerLink]="link.path"
             [fragment]="link.fragment || undefined"
+            [class.is-active]="!!link.fragment && link.fragment === activeFragment()"
             (click)="close()"
           >
             @switch (link.icon) {
