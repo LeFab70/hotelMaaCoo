@@ -21,8 +21,11 @@ Une **connexion internet** est nécessaire pour ouvrir et utiliser le site.
 3. **Choisir une ville** (Dschang / Douala / Bertoua) pour voir les tarifs et la carte de cet hôtel.
 4. **Appeler** : toucher / cliquer un numéro → l’appel se lance (surtout sur téléphone).
 5. **Écrire un e-mail** : cliquer sur E-mail / Contactez-nous → un message de réservation se prépare dans votre messagerie.
-6. **Chatbot (bulle en bas à droite)** : assistant automatique qui répond aux questions fréquentes (prix, adresse, parking, réservation…). S’il ne peut pas répondre, il propose d’appeler ou d’écrire.
-7. **Flèche en bas à droite** : remonter en haut de la page.
+6. **WhatsApp** : cliquer sur le bouton WhatsApp → la discussion s’ouvre avec un message de réservation déjà préparé.
+7. **Chatbot (bulle en bas à droite)** : assistant automatique qui répond aux questions fréquentes (prix, adresse, parking, réservation…). S’il ne peut pas répondre, il propose d’appeler ou d’écrire.
+8. **Flèche en bas à droite** : remonter en haut de la page.
+
+Le site peut aussi servir de base pour renforcer la visibilité sur les réseaux (Facebook, etc.) en partageant le lien.
 
 ---
 
