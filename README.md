@@ -2,33 +2,31 @@
 
 Site vitrine des hôtels **MA'ACO** au Cameroun : **Bertoua**, **Douala (Logpom)** et **Nkong-Ni (près de Dschang)**.
 
-Site en ligne (Netlify) : après déploiement, l’URL du projet Netlify.
+**Lien du site :** [https://hotelsmaacoo.netlify.app](https://hotelsmaacoo.netlify.app)
 
 ---
 
-## À quoi sert le site ?
+## Objectif
 
-- Présenter les 3 hôtels (photos, adresses, services)
-- Afficher les **tarifs** des chambres selon la ville
-- Montrer **parking**, restaurant, conférence, Wi‑Fi, laverie, etc.
-- Permettre de **réserver** par téléphone, e-mail ou WhatsApp
-- Répondre aux questions via un **chatbot**
-- Contacter l’équipe via la page **Contactez-nous**
+Rendre les hôtels **MA'ACO visibles sur internet** : présenter les établissements, les chambres, les tarifs et les services, et permettre aux clients de **réserver facilement** (appel, e-mail, WhatsApp).
+
+Une **connexion internet** est nécessaire pour ouvrir et utiliser le site.
 
 ---
 
-## Navigation (pour les visiteurs)
+## Guide d’utilisation (visiteurs)
 
-1. Menu en haut : Hôtels, Chambres, Services, Restaurant, Avis, Localisation, Contact
-2. Bouton **Réserver** / **Appeler** : contact direct
-3. Choisir une **ville** (Dschang / Douala / Bertoua) pour tarifs + carte
-4. Bulle de chat en bas à droite : questions (prix, parking, adresse…)
-5. Page **Contactez-nous** : formulaire + numéros des 3 hôtels
-6. Flèche en bas à droite : retour en haut de page
+1. **Ouvrir le site** dans un navigateur (téléphone ou ordinateur), avec internet.
+2. **Menu en haut** : Hôtels, Chambres, Services, Restaurant, Avis, Localisation, Contactez-nous.
+3. **Choisir une ville** (Dschang / Douala / Bertoua) pour voir les tarifs et la carte de cet hôtel.
+4. **Appeler** : toucher / cliquer un numéro → l’appel se lance (surtout sur téléphone).
+5. **Écrire un e-mail** : cliquer sur E-mail / Contactez-nous → un message de réservation se prépare dans votre messagerie.
+6. **Chatbot (bulle en bas à droite)** : assistant automatique qui répond aux questions fréquentes (prix, adresse, parking, réservation…). S’il ne peut pas répondre, il propose d’appeler ou d’écrire.
+7. **Flèche en bas à droite** : remonter en haut de la page.
 
 ---
 
-## Contacts principaux
+## Contacts
 
 | Ville | Téléphones |
 | --- | --- |
@@ -53,7 +51,3 @@ Stack : **Angular 21**, icônes Lucide, déploiement **Netlify** (`netlify.toml`
 - Build : `npm ci && npm run build`
 - Publish : `dist/maaco-hotel/browser`
 - SPA : rewrite `/*` → `/index.html` (pour `/contact`)
-
-### Render (optionnel)
-
-Ajouter un **Rewrite** `/*` → `/index.html`, sinon `/contact` renvoie Not Found.
