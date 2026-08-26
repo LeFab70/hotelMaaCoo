@@ -1,79 +1,59 @@
-# Hôtel MA'ACO
+# Hôtel MA'ACO — Site web
 
-Site vitrine Angular pour les hôtels MA'ACO (Bertoua, Douala, Nkong-Ni).
+Site vitrine des hôtels **MA'ACO** au Cameroun : **Bertoua**, **Douala (Logpom)** et **Nkong-Ni (près de Dschang)**.
 
-## Développement local
+Site en ligne (Netlify) : après déploiement, l’URL du projet Netlify.
+
+---
+
+## À quoi sert le site ?
+
+- Présenter les 3 hôtels (photos, adresses, services)
+- Afficher les **tarifs** des chambres selon la ville
+- Montrer **parking**, restaurant, conférence, Wi‑Fi, laverie, etc.
+- Permettre de **réserver** par téléphone, e-mail ou WhatsApp
+- Répondre aux questions via un **chatbot**
+- Contacter l’équipe via la page **Contactez-nous**
+
+---
+
+## Navigation (pour les visiteurs)
+
+1. Menu en haut : Hôtels, Chambres, Services, Restaurant, Avis, Localisation, Contact
+2. Bouton **Réserver** / **Appeler** : contact direct
+3. Choisir une **ville** (Dschang / Douala / Bertoua) pour tarifs + carte
+4. Bulle de chat en bas à droite : questions (prix, parking, adresse…)
+5. Page **Contactez-nous** : formulaire + numéros des 3 hôtels
+6. Flèche en bas à droite : retour en haut de page
+
+---
+
+## Contacts principaux
+
+| Ville | Téléphones |
+| --- | --- |
+| Nkong-Ni / Dschang | 672758667 / 691915835 |
+| Douala Logpom | 699406002 |
+| E-mail | reservations@hotelmaaco.cm |
+
+---
+
+## Développement (équipe technique)
 
 ```bash
 npm install
-npm start
+npm start          # http://127.0.0.1:4200
+npm run build      # dist/maaco-hotel/browser
 ```
 
-Ouvrir [http://127.0.0.1:4200](http://127.0.0.1:4200).
+Stack : **Angular 21**, icônes Lucide, déploiement **Netlify** (`netlify.toml`).
 
-## Build production
+### Netlify
 
-```bash
-npm run build
-```
+- Build : `npm ci && npm run build`
+- Publish : `dist/maaco-hotel/browser`
+- SPA : rewrite `/*` → `/index.html` (pour `/contact`)
 
-Sortie : `dist/maaco-hotel/browser`
+### Render (optionnel)
 
-## Déploiement sur Netlify (recommandé)
-
-1. Va sur [https://app.netlify.com](https://app.netlify.com) → **Add new site** → **Import an existing project**
-2. Connecte GitHub et choisis `LeFab70/hotelMaaCoo`
-3. Netlify lit déjà `netlify.toml`. Vérifie :
-   - **Build command** : `npm ci && npm run build`
-   - **Publish directory** : `dist/maaco-hotel/browser`
-4. **Deploy site**
-5. Teste :
-   - `https://TON-SITE.netlify.app/`
-   - `https://TON-SITE.netlify.app/contact` (doit marcher en lien direct)
-
-Le fichier `netlify.toml` gère le rewrite SPA (`/contact` → `index.html`).
-
-### Domaine custom (optionnel)
-
-Site settings → **Domain management** → Add custom domain.
-
-## Déploiement sur Render (Static Site)
-
-### Réglage obligatoire (sinon `/contact` = Not Found)
-
-Sur [dashboard.render.com](https://dashboard.render.com) → ton Static Site → **Redirects/Rewrites** → **Add Rule** :
-
-| Champ | Valeur |
-| --- | --- |
-| Source | `/*` |
-| Destination | `/index.html` |
-| Action | **Rewrite** |
-
-Sans cette règle : la home marche, mais un lien direct ou un refresh sur `/contact` échoue pour certains visiteurs.
-
-### Création du service
-
-1. **New +** → **Static Site**
-2. Repo GitHub `LeFab70/hotelMaaCoo`
-3. **Build Command** : `npm ci && npm run build`
-4. **Publish Directory** : `dist/maaco-hotel/browser`
-5. Ajouter le **Rewrite** ci-dessus
-6. (Re)déployer
-
-### Pourquoi certains ont accès et d’autres non ?
-
-1. **Rewrite manquant** : accès via le menu (Angular) OK ; lien direct `/contact` en échec.
-2. **Plan Free Render** : le site s’endort après inactivité ; le 1er chargement peut être long ou sembler “inaccessible”.
-3. Cloudflare / CDN : utile en plus, **après** avoir corrigé le Rewrite.
-
-### Option Cloudflare (après le fix Render)
-
-1. Compte [Cloudflare](https://dash.cloudflare.com)
-2. Ajouter un domaine (ou utiliser un sous-domaine)
-3. Proxy orange vers `hotelmaacoo.onrender.com`
-4. SSL/TLS : mode **Full**
-5. Ne remplace pas le Rewrite Render pour `/contact`
-
-### Alternative plus stable (gratuit, toujours allumé)
-
-**Cloudflare Pages** ou **Netlify** : pas d’endormissement comme le free Render, et fallback SPA facile.
+Ajouter un **Rewrite** `/*` → `/index.html`, sinon `/contact` renvoie Not Found.
